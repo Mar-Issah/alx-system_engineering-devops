@@ -2,8 +2,10 @@
 # This script is displaying "Best School" 10 times
 idx="0"
 
-while [ $idx -le 9 ]
+while [ $idx -lt 9 ]
 do
 	echo "Best School"
 	((idx++))
 done
+
+echo -n "Best School"
