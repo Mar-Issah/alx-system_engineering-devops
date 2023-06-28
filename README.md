@@ -1,1 +1,2 @@
-My first README
+## ALX SYSTEM ENGINEERING DEVOPS
+- 0x00-shell_basics
