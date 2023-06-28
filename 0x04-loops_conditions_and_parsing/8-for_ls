@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Script that display the content of the current directory
+for i in *; do echo "$i" | cut -d "-" -f2; done
