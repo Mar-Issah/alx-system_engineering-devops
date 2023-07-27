@@ -12,17 +12,17 @@ These are responsible for handling HTTP requests from clients (browsers) and ser
 
 Application servers host web applications and execute server-side code to generate dynamic content based on client requests. They handle business logic, database interactions, and application resources. Examples include Apache Tomcat, Microsoft IIS with ASP.NET support, and Node.js.
 
-Load Balancers: Load balancers distribute incoming traffic across multiple web servers to ensure optimal resource utilization and prevent overloading of any single server. This improves the overall performance and reliability of the web infrastructure.
+### Load Balancers
 
-Database Servers: These servers store and manage the web application's data. They handle read and write operations and ensure data integrity. Examples include MySQL, PostgreSQL, MongoDB, and Microsoft SQL Server.
+Load balancers distribute incoming traffic across multiple web servers to ensure optimal resource utilization and prevent overloading of any single server. This improves the overall performance and reliability of the web infrastructure.
 
-Content Delivery Network (CDN): CDNs distribute content to multiple servers located in different geographical regions, reducing latency and improving content delivery speed for users around the world.
+### Database Servers
 
-Caching Mechanisms: Caching is used to store frequently accessed data temporarily, reducing the need to fetch it from the original source repeatedly. Caching mechanisms can significantly improve website performance.
+These servers store and manage the web application's data. They handle read and write operations and ensure data integrity. Examples include MySQL, PostgreSQL, MongoDB, and Microsoft SQL Server.
 
-Security Components: Web infrastructure design should include security measures like firewalls, intrusion detection systems (IDS), and SSL certificates to protect against unauthorized access, attacks, and data breaches.
+### Security Components
 
-Scalability: The infrastructure should be designed to scale horizontally (adding more servers) or vertically (upgrading server resources) to accommodate increased user traffic and demand.
+Web infrastructure design should include security measures like firewalls, intrusion detection systems (IDS), and SSL certificates to protect against unauthorized access, attacks, and data breaches.
 
 Redundancy and High Availability: Redundancy ensures that critical components have backup systems to ensure continuous operation in case of failures. High availability ensures minimal downtime and uninterrupted service.
 
