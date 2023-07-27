@@ -24,6 +24,10 @@ These servers store and manage the web application's data. They handle read and 
 
 Web infrastructure design should include security measures like firewalls, intrusion detection systems (IDS), and SSL certificates to protect against unauthorized access, attacks, and data breaches.
 
-Redundancy and High Availability: Redundancy ensures that critical components have backup systems to ensure continuous operation in case of failures. High availability ensures minimal downtime and uninterrupted service.
+### Redundancy and High Availability
 
-Monitoring and Logging: Web infrastructure should include tools for monitoring system health, performance, and security. Logs help identify and troubleshoot issues quickly.
+Redundancy ensures that critical components have backup systems to ensure continuous operation in case of failures. High availability ensures minimal downtime and uninterrupted service.
+
+### Monitoring and Logging
+
+Web infrastructure should include tools for monitoring system health, performance, and security. Logs help identify and troubleshoot issues quickly.
