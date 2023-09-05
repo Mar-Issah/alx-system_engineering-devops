@@ -17,7 +17,7 @@ frontend localnodes
 backend nodes
 	mode http
 	balance roundrobin
-	server 1346-web-01 35.237.170.121
-	server 1346-web-02 100.25.38.27" >> $config_file
+	server 268033-web-01 35.237.170.121
+	server 268033-web-02 100.25.38.27" >> $config_file
 
 sudo service haproxy restart
