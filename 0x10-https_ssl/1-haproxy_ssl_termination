@@ -28,7 +28,7 @@ frontend localnodes-http
 	default_backend nodes
 
 frontend localnodes-https
-	bind *:443 ssl crt /etc/haproxy/certs/tabbykatz.pem
+	bind *:443 ssl crt /etc/haproxy/certs/marsiya.tech
 	reqadd X-Forwarded-Proto:\ https
 	http-request set-header X-SSL %[ssl_fc]
 	default_backend nodes
