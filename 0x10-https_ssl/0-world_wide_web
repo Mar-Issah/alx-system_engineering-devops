@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # subdomain points to load-balancer IP (lb-01)
+
 if [ $# -eq 1 ]; then
 	domains="www.$1 lb-01.$1 web-01.$1 web-02.$1"
 else
