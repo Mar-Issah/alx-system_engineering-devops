@@ -4,20 +4,15 @@
 # sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
 # service nginx restart
 
-# Stop Nginx service
-sudo service nginx stop
+apt-get -y update
+apt-get -y install nginx
 
-# Check if any process is already listening on port 80
-if sudo lsof -Pi :80 -sTCP:LISTEN -t >/dev/null; then
-    # If a process is found, stop it
-    sudo kill -9 $(sudo lsof -t -i:80)
-fi
+ufw allow 'Nginx HTTP'
 
-# Modify Nginx configuration file to listen on port 80
-sudo sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+# sudo service nginx start
 
-# Start Nginx service
-sudo service nginx start
+sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+service nginx restart
 
-# Check Nginx error logs for any issues
-sudo tail -n 50 /var/log/nginx/error.log
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
