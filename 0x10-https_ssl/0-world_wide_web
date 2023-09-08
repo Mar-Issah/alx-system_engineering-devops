@@ -2,14 +2,53 @@
 # subdomain points to load-balancer IP (lb-01)
 
 # Expected IP addresses
+# lb_01_IP="18.234.105.131"
+# web_01_IP="100.26.234.57"
+# web_02_IP="100.25.38.27"
+
+# if [ $# -eq 1 ]; then
+# 	# domains="www.$1 lb-01.$1 web-01.$1 web-02.$1"
+# 	domains="www.$1 $lb_01_IP $web_01_IP $web_02_IP"
+# else
+# 	domains="$2.$1"
+# fi
+# dig $domains | awk '/ANSWER SECTION:/ { getline; split($1, a, "."); print "The subdomain", a[1], "is a", $4, "record and points to", $5}'
+
+#!/usr/bin/env bash
+
+# Expected IP addresses
 lb_01_IP="18.234.105.131"
 web_01_IP="100.26.234.57"
 web_02_IP="100.25.38.27"
 
 if [ $# -eq 1 ]; then
-	# domains="www.$1 lb-01.$1 web-01.$1 web-02.$1"
-	domains="www.$1 $lb_01_IP $web_01_IP $web_02_IP"
+    case "$1" in
+        www)
+            subdomain="www"
+            ip_address="54.210.47.110"
+            ;;
+        lb-01)
+            subdomain="lb-01"
+            ip_address="$lb_01_IP"
+            ;;
+        web-01)
+            subdomain="web-01"
+            ip_address="$web_01_IP"
+            ;;
+        web-02)
+            subdomain="web-02"
+            ip_address="$web_02_IP"
+            ;;
+        *)
+            echo "Invalid subdomain: $1"
+            exit 1
+            ;;
+    esac
 else
-	domains="$2.$1"
+    subdomain="$2"
+    ip_address=$(dig +short "$2.$1")
 fi
-dig $domains | awk '/ANSWER SECTION:/ { getline; split($1, a, "."); print "The subdomain", a[1], "is a", $4, "record and points to", $5}'
+
+if [ -n "$ip_address" ]; then
+    echo "The subdomain $subdomain is an A record and points to $ip_address"
+fi
