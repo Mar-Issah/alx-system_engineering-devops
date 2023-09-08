@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 # subdomain points to load-balancer IP (lb-01)
 
+# Expected IP addresses
+lb_01_IP="18.234.105.131"
+web_01_IP="100.26.234.57"
+web_02_IP="100.25.38.27"
+
 if [ $# -eq 1 ]; then
-	domains="www.$1 lb-01.$1 web-01.$1 web-02.$1"
+	# domains="www.$1 lb-01.$1 web-01.$1 web-02.$1"
+	domains="www.$1 $lb_01_IP $web_01_IP $web_02_IP"
 else
 	domains="$2.$1"
 fi
