@@ -1,20 +1,40 @@
 #!/usr/bin/env bash
-# subdomain points to load-balancer IP (lb-01)
+# # subdomain points to load-balancer IP (lb-01)
+
+# # Expected IP addresses
+# lb_01_IP="18.234.105.131"
+# web_01_IP="100.26.234.57"
+# web_02_IP="100.25.38.27"
+
+# if [ $# -eq 1 ]; then
+# 	# domains="www.$1 lb-01.$1 web-01.$1 web-02.$1"
+# 	domains="www.$1 $lb_01_IP $web_01_IP $web_02_IP"
+# else
+# 	domains="$2.$1"
+# fi
+# dig $domains | awk '/ANSWER SECTION:/ { getline; split($1, a, ".");
+# print "The subdomain", a[1], "is a", $4, "record and points to", $5}'
+
+
 
 # Expected IP addresses
 lb_01_IP="18.234.105.131"
 web_01_IP="100.26.234.57"
 web_02_IP="100.25.38.27"
 
+subdomains=("www" "lb-01" "web-01" "web-02")
+
 if [ $# -eq 1 ]; then
-	# domains="www.$1 lb-01.$1 web-01.$1 web-02.$1"
-	domains="www.$1 $lb_01_IP $web_01_IP $web_02_IP"
+    domains="$1"
 else
-	domains="$2.$1"
+    domains="$2.$1"
 fi
-dig $domains | awk '/ANSWER SECTION:/ {
-    split($1, a, ".");
-    subdomain = a[1];
-    gsub("-", "_", subdomain);  # Replace hyphens with underscores if needed
-    print "The subdomain", subdomain, "is a", $4, "record and points to", $5
-}'
+
+for subdomain in "${subdomains[@]}"; do
+    dig_result=$(dig +short "$subdomain.$domains")
+    if [ -n "$dig_result" ]; then
+        echo "The subdomain $subdomain is an A record and points to $dig_result"
+    else
+        echo "Failed to retrieve IP address for $subdomain"
+    fi
+done
