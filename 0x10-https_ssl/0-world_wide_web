@@ -1,31 +1,23 @@
 #!/usr/bin/env bash
 # subdomain points to load-balancer IP (lb-01)
 
-# if [ $# -eq 1 ]; then
-# 	domains="www.$1 lb-01.$1 web-01.$1 web-02.$1"
-# else
-# 	domains="$2.$1"
-# fi
-# dig $domains | awk '/ANSWER SECTION:/ { getline; split($1, a, "."); print "The subdomain", a[1], "is a", $4, "record and points to", $5}
-
-subdomains=( "www" "lb-01" "web-01" "web-02" )
+subdomains=( "www" "lb-01" "web-01" "web-02")
 domain="$1"
-subdomain="$2"
+sub="$2"
 
 dig_cmd () {
-	subdomain="$2"
-	INFO="$(dig "$subdomain.$domain" | grep -A1 'ANSWER SECTION:' | awk 'NR==2')"
+	sub="$2"
+	INFO="$(dig "$sub.$domain" | grep -A1 'ANSWER SECTION:' | awk 'NR==2')"
 	IP=$(echo "$INFO" | awk '{print $5}')
 	RECORD=$(echo "$INFO" | awk '{print $4}')
 
-	echo -e "The subdomain \
-is a $RECORD record and points to $IP"
+	echo -e "The subdomain $sub is a $RECORD record and points to $IP"
 }
 
 if [ $# -eq 1 ]; then
-	for sub in "${subdomains[@]}"; do
-		dig_cmd "$domain" "$sub"
+	for subs in "${subdomains[@]}"; do
+		dig_cmd "$domain" "$subs"
 	done
 elif [ $# -eq 2 ]; then
-	dig_cmd "$domain" "$subdomain"
+	dig_cmd "$domain" "$sub"
 fi
