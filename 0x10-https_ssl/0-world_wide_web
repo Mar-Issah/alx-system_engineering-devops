@@ -1,53 +1,31 @@
 #!/usr/bin/env bash
-# # subdomain points to load-balancer IP (lb-01)
-
-# # Expected IP addresses
-# lb_01_IP="18.234.105.131"
-# web_01_IP="100.26.234.57"
-# web_02_IP="100.25.38.27"
+# subdomain points to load-balancer IP (lb-01)
 
 # if [ $# -eq 1 ]; then
-# 	# domains="www.$1 lb-01.$1 web-01.$1 web-02.$1"
-# 	domains="www.$1 $lb_01_IP $web_01_IP $web_02_IP"
+# 	domains="www.$1 lb-01.$1 web-01.$1 web-02.$1"
 # else
 # 	domains="$2.$1"
 # fi
-# dig $domains | awk '/ANSWER SECTION:/ { getline; split($1, a, ".");
-# print "The subdomain", a[1], "is a", $4, "record and points to", $5}'
+# dig $domains | awk '/ANSWER SECTION:/ { getline; split($1, a, "."); print "The subdomain", a[1], "is a", $4, "record and points to", $5}
 
+subdomains=( "www" "lb-01" "web-01" "web-02" )
+domain="$1"
+subdomain="$2"
 
-# Expected IP addresses
-lb_01_IP="18.234.105.131"
-web_01_IP="100.26.234.57"
-web_02_IP="100.25.38.27"
+dig_cmd () {
+	subdomain="$2"
+	INFO="$(dig "$subdomain.$domain" | grep -A1 'ANSWER SECTION:' | awk 'NR==2')"
+	IP=$(echo "$INFO" | awk '{print $5}')
+	RECORD=$(echo "$INFO" | awk '{print $4}')
 
-subdomains=("www" "lb-01" "web-01" "web-02")
+	echo -e "The subdomain \
+is a $RECORD record and points to $IP"
+}
 
-for subdomain in "${subdomains[@]}"; do
-    ip_address=""
-    case "$subdomain" in
-        "www")
-            ip_address="$lb_01_IP"
-            ;;
-        "lb-01")
-            ip_address="$lb_01_IP"
-            ;;
-        "web-01")
-            ip_address="$web_01_IP"
-            ;;
-        "web-02")
-            ip_address="$web_02_IP"
-            ;;
-        *)
-            echo "Invalid subdomain: $subdomain"
-            exit 1
-            ;;
-    esac
-
-    if [ -n "$ip_address" ]; then
-        echo "The subdomain $subdomain is an A record and points to $ip_address"
-    else
-        echo "Failed to retrieve IP address for $subdomain"
-    fi
-done
-
+if [ $# -eq 1 ]; then
+	for sub in "${subdomains[@]}"; do
+		dig_cmd "$domain" "$sub"
+	done
+elif [ $# -eq 2 ]; then
+	dig_cmd "$domain" "$subdomain"
+fi
