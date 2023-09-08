@@ -36,5 +36,5 @@ frontend localnodes-https
 backend nodes
 	mode http
 	balance roundrobin
-	server 268033-web-01 54.209.203.213
-	server 268033-web-02 54.157.138.10
+	server 268033-web-01 100.26.234.57
+	server 268033-web-02 100.25.38.27
