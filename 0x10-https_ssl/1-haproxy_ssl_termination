@@ -35,7 +35,7 @@ defaults
     errorfile 504 /etc/haproxy/errors/504.http
 
 frontend www-http
-    bind *:80
+    bind *:8080
     http-request add-header X-Forwarded-Proto http
     default_backend web-backend
 
@@ -48,4 +48,4 @@ backend web-backend
     balance roundrobin
     redirect scheme https if !{ ssl_fc }
     server 268033-web-01 54.209.203.213:80 check
-    server 268033-web-02 54.157.138.10:80 check
+    server 268033-web-02 54.210.57.49:80 check
