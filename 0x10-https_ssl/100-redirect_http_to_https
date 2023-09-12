@@ -21,23 +21,14 @@ defaults
 	errorfile 502 /etc/haproxy/errors/502.http
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
+frontend www-http
+         bind *:80
+         bind *:443 ssl crt /etc/haproxy/certs/www.marsiya.tech.pem
+         http-request add-header X-Forwarded-Proto https
+         default_backend web-backend
+backend web-backend
+        balance roundrobin
+        redirect scheme https if !{ ssl_fc }
+        server 268033-web-01 54.237.102.87:80 check
+        server 268033-web-02 54.210.57.49:80 check
 
-frontend localnodes-http
-	bind *:80
-	mode http
-	reqadd X-Forwarded-Proto:\ http
-	default_backend nodes
-
-frontend localnodes-https
-	bind *:443 ssl crt /etc/haproxy/certs/marsiya.tech
-	mode http
-	reqadd X-Forwarded-Proto:\ https
-	http-request set-header X-SSL %[ssl_fc]
-	default_backend nodes
-
-backend nodes
-	redirect scheme if !{ ssl_fc }
-	mode http
-	balance roundrobin
-	server 268033-web-01 100.26.234.57
-	server 268033-web-02 100.25.38.27
