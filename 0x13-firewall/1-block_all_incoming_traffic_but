@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+# install the ufw firewall and setup a few rules on web-01
 sudo apt-get install ufw
 sudo ufw enable
 sudo ufw status verbose
