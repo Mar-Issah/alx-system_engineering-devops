@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""script that, uses a REST API, for a given employee ID,
-returns information about his/her TODO list progress"""
+"""script that returns information about employee"""
+
+import csv
 import requests
 import sys
 
@@ -30,6 +31,17 @@ def main():
     for todo in todos.json():
         if todo["completed"]:
             print(f"    {todo['title']}")
+
+    filename = f"{emp_id}.csv"
+
+    with open(filename, "w") as file:
+        writer = csv.writer(
+            file, lineterminator='\n', quoting=csv.QUOTE_ALL)
+        for todo in todos.json():
+            task_completed = "True" if todo["completed"] else "False"
+            task_title = todo["title"]
+            writer.writerow(
+                [emp_id, employee_name, task_completed, task_title])
 
 
 if __name__ == '__main__':
