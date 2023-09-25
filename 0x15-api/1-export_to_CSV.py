@@ -21,7 +21,7 @@ def main():
         print(f"Employee with ID {emp_id} not found.")
         sys.exit(1)
 
-    employee_name = res.json()["name"]
+    employee_name = res.json()["username"]
     completed_tasks = sum(todo["completed"] for todo in todos.json())
     total_tasks = len(todos.json())
 
