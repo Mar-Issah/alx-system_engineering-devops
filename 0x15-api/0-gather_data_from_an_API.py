@@ -25,8 +25,8 @@ def main():
     total_tasks = len(todos.json())
 
     print(
-        f"Employee {employee_name} is done"
-        f"withtasks({completed_tasks}/{total_tasks}):")
+        f"Employee {employee_name} is done "
+        f"with tasks({completed_tasks}/{total_tasks}):")
     for todo in todos.json():
         if todo["completed"]:
             print(f"    {todo['title']}")
