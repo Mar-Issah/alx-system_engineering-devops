@@ -5,7 +5,7 @@
 - What is a REST API.
 - What are microservices.
 - What is the CSV format.
-- What is the JSON format
+- What is the JSON format.
 - Pythonic Package and module name style
 - Pythonic Class name style
 - Pythonic Variable name style.
