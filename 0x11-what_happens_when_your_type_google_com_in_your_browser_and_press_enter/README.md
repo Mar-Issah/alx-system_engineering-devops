@@ -10,7 +10,7 @@ Requirements, your post must cover:
 - TCP/IP
 - Firewall
 - HTTPS/SSL
-- Load-balancer
+- Load-balancer.
 - Web server.
 - Application server
 - Database
