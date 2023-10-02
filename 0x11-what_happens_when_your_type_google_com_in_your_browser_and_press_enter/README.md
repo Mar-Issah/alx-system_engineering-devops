@@ -12,5 +12,5 @@ Requirements, your post must cover:
 - HTTPS/SSL.
 - Load-balancer.
 - Web server.
-- Application server
+- Application server.
 - Database.
