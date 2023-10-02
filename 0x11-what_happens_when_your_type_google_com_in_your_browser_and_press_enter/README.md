@@ -13,4 +13,4 @@ Requirements, your post must cover:
 - Load-balancer.
 - Web server.
 - Application server
-- Database
+- Database.
