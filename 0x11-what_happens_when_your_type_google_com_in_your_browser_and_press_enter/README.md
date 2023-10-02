@@ -8,7 +8,7 @@ Requirements, your post must cover:
 
 - DNS request.
 - TCP/IP
-- Firewall
+- Firewall.
 - HTTPS/SSL
 - Load-balancer.
 - Web server.
