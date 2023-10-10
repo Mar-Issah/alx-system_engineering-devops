@@ -7,7 +7,7 @@ URL = 'https://www.reddit.com/r/{}/hot.json'
 
 def top_ten(subreddit):
     """Get top_ten hot post listed"""
-    header = {'user-agent': 'marsiya-app'}
+    header = {'user-agent': 'marsiya-app1'}
 
     req = requests.get(URL.format(subreddit), headers=header)
     if req.status_code != 200:
