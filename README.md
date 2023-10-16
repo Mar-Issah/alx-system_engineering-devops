@@ -22,4 +22,5 @@
 - 0x16. API advanced
 - 0x18-webstack_monitoring
 - 0x19-postmortem
-- 
+- 0x1A-application_server
+  
