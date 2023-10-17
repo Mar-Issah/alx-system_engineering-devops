@@ -1,0 +1,12 @@
+#!/bin/bash
+
+DD_API_KEY=43a3fc297de08274856db32a1f996de5
+DD_APP_KEY=dc4ad0020e8a2f210b1f74dccc8440e883a86d3f
+
+# Curl command
+# curl -X GET "https://api.datadoghq.com/api/v1/hosts/totals" \
+# -H "Accept: application/json" \
+# -H "DD-API-KEY: ${DD_API_KEY}" \
+# -H "DD-APPLICATION-KEY: ${DD_APP_KEY}"
+
+curl -X GET "https://api.datadoghq.com/api/v1/hosts?api_key=${DD_API_KEY}&application_key=${DD_APP_KEY}"
