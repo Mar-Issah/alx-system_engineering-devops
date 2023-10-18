@@ -23,4 +23,4 @@
 - 0x18-webstack_monitoring
 - 0x19-postmortem
 - 0x1A-application_server
-  
+- 0x1B. Web stack debugging #4
